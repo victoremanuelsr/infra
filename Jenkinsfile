@@ -7,8 +7,8 @@ pipeline{
   stages{
     stage('Download artifactory'){
       steps{
-        sh 'curl -u ${ARTIFACTORY_ACCESS_TOKEN}:${ARTIFACTORY_ACCESS_USERNAME} -X GET "https://victoremanuelsr.jfrog.io/artifactory/petstore/build/libs/PetStore.war"'
-        sh '1s -la'
+        sh 'curl -u ${ARTIFACTORY_ACCESS_USERNAME}:${ARTIFACTORY_ACCESS_TOKEN} -X GET "https://victoremanuelsr.jfrog.io/artifactory/petstore/build/libs/PetStore.war"'
+        sh 'ls -la'
       }
     }
   }
