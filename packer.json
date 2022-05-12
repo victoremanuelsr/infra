@@ -35,7 +35,7 @@
 	  [
 		{
 		  "type": "docker-tag",
-		  "repository": "petstore",
+		  "repository": "victoremanuelsr/petstore",
 		  "tags": "petstore"
 		},
 		{
