@@ -1,0 +1,7 @@
+name: java
+  hosts: local
+  tasks:
+    - name: install java
+      apt:
+        name: openjdk-8-jdk
+        install_recommends: no
