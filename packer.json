@@ -27,8 +27,8 @@
 	  },
 	  {
 		"type": "file",
-		"source": "build/libs/PetStore.war",
-		"destination": "/usr/apache-tomcat-9.0.56/webapps/PetStore.war"
+		"source": "/build/libs/PetStore.war",
+		"destination": "/usr/apache-tomcat-9.0.62/webapps/PetStore.war"
 	  }
 	],
 	"post-processors": [
