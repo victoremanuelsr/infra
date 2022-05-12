@@ -13,7 +13,7 @@ pipeline{
     }
     stage('Build image docker and push for dockerhub'){
       steps{
-        sh 'ansible-playbook -i playbook.yml -e "docker_username=${DOCKER_ACCESS_USERNAME} docker_password=${DOCKER_ACCESS_TOKEN}'
+        sh 'packer build --var docker_username=$DOCKER_ACCESS_USERNAME --var docker_password=$DOCKER_ACCESS_TOKEN packer.json'
       }
     }
   }

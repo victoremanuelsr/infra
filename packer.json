@@ -1,44 +1,49 @@
 {
 	"variables": {
-		"docker_username":"",
-		"docker_password":""
+	  "docker_username": "",
+	  "docker_password": ""
 	},
-	
-	"builders":[
-		{
+	"builders": [
+	  {
 		"type": "docker",
-		"image": "tomcat:9.0",
+		"image": "ubuntu:20.04",
 		"commit": true,
 		"changes": [
-			"EXPOSE 8080",
-			"CMD ["catalina.sh", "run"]" ]
-		}
+		  "EXPOSE 8080",
+		  "CMD [\"apache-tomcat-9.0.62/bin/catalina.sh\",\"run\"]"
+		]
+	  }
 	],
-
-	"provisioners":[
+	"provisioners": [
+	  {
+		"type": "shell",
+		"inline": [
+		  "apt update && apt install ansible -y"
+		]
+	  },
+	  {
+		"type": "ansible-local",
+		"playbook_file": "playbook.yml"
+	  },
+	  {
+		"type": "file",
+		"source": "build/libs/PetStore.war",
+		"destination": "/apache-tomcat-9.0.56/webapps/PetStore.war"
+	  }
+	],
+	"post-processors": [
+	  [
 		{
-			"type": "ansible-local",
-			"playbook_file": "./playbook.yml"
+		  "type": "docker-tag",
+		  "repository": "petstore",
+		  "tags": "petstore"
 		},
 		{
-			"type": "file",
-			"source": "/build/libs/PetStore.war",
-			"destination": "/usr/local/tomcat/webapps/PetStore.war"
-		}	
-	],
-	"post-processors":[
-		[
-			{
-				"type": "docker-tag",
-				"repository": "victoremanuelsr/petstore",
-				"tag": "petstore"
-			},
-			{
-				"type": "docker-push",
-				"login":true,
-				"login_username":"{{user `docker_username`}}",
-				"login_password":"{{user `docker_password`}}"
-			}
-		]
+		  "type": "docker-push",
+		  "login": true,
+		  "login_username": "{{user `docker_username`}}",
+		  "login_password": "{{user `docker_password`}}"
+		}
+	  ]
 	]
-}
+  }
