@@ -1,7 +1,8 @@
 {
 	"variables": {
 	  "docker_username": "",
-	  "docker_password": ""
+	  "docker_password": "",
+	  "docker_repository": ""
 	},
 	"builders": [
 	  {
@@ -35,7 +36,7 @@
 	  [
 		{
 		  "type": "docker-tag",
-		  "repository": "victoremanuelsr/petstore",
+		  "repository": "{{user `docker_repository`}}",
 		  "tags": "petstore"
 		},
 		{
