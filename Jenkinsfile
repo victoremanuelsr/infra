@@ -13,7 +13,7 @@ pipeline{
     }
     stage('Build image docker and push for dockerhub'){
       steps{
-        sh 'packer build --var docker_username=$DOCKER_ACCESS_USERNAME --var docker_password=$DOCKER_ACCESS_TOKEN --var docker_password=victoremanuelsr/petstore packer.json'
+        sh 'packer build --var docker_username=$DOCKER_ACCESS_USERNAME --var docker_password=$DOCKER_ACCESS_TOKEN --var docker_repository=victoremanuelsr/petstore packer.json'
       }
     }
   }

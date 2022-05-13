@@ -37,7 +37,7 @@
 		{
 		  "type": "docker-tag",
 		  "repository": "{{user `docker_repository`}}",
-		  "tags": "petstore"
+		  "tags": "1.0"
 		},
 		{
 		  "type": "docker-push",
